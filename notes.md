@@ -12,14 +12,15 @@
 
 * [x] repo
 * [x] reserve pypi name
-* [ ] pre-commit: black etc.
-* [ ] code
-* [ ] tests
+* [x] pre-commit: black etc.
+* [x] code
+* [x] tests
 * [ ] (maybe) tox
 * [ ] CI
 * [ ] readme
   * [ ] badges
   * [ ] docs
+* [ ] docstrings
 * [ ] (maybe) set up type checking
 * [ ] release
   * [ ] bump version
@@ -115,4 +116,27 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
   * pre-commit autoupdate
   * pre-commit install
 
-16:29/16:47
+16:29/16:48
+
+
+### code + tests
+
+* module: copy from article
+* tests: already had them, kinda
+  * add simple import test
+  * pip install pytest
+  * pytest
+    * ModuleNotFoundError: No module named 'typeless_dataclasses'
+  * pip install -e .
+    * ERROR: File "setup.py" not found. Directory cannot be installed in editable mode: /Users/lemon/code/typeless-dataclasses (A "pyproject.toml" file was found, but editable mode currently requires a setup.py based build.)
+    * add setup.py with empty setup() call
+    * works on the second try
+
+16:48/17:31
+
+---
+
+* E501 line too long (87 > 79 characters); B950 line too long (87 > 79 characters)
+  * had to add ignores to setup.cfg
+
+17:31/17:49
