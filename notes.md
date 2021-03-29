@@ -1,4 +1,4 @@
-## 2021-03-29 
+## 2021-03-29
 
 
 ### github repo
@@ -15,6 +15,7 @@
 * [ ] pre-commit: black etc.
 * [ ] code
 * [ ] tests
+* [ ] (maybe) tox
 * [ ] CI
 * [ ] readme
   * [ ] badges
@@ -34,9 +35,9 @@
 
 ```console
 $ echo "layout python-venv python3.9" > .envrc
-direnv: error ~/code/typeless-dataclasses/.envrc is blocked. Run `direnv allow` to approve its content                     
+direnv: error ~/code/typeless-dataclasses/.envrc is blocked. Run `direnv allow` to approve its content
 $ direnv allow
-direnv: loading ~/code/typeless-dataclasses/.envrc                                                                                    
+direnv: loading ~/code/typeless-dataclasses/.envrc
 Collecting pip
   Using cached pip-21.0.1-py3-none-any.whl (1.5 MB)
 Installing collected packages: pip
@@ -65,16 +66,17 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
 * pyproject.toml
 * setup.cfg
   * version = 0.1.dev0
-  
+
 * pip install build
   * python -m build
     * error: error in 'egg_base' option: 'src' does not exist or is not a directory
       * mkdir src
   * worked the second time
+    * note: directory won't appear in the repo because it has no files
 
 * python -m twine upload dist/*
   * yay: https://pypi.org/project/typeless-dataclasses/0.1.dev0/
-      
+
     ```console
     $ pip install typeless-dataclasses
     Collecting typeless-dataclasses
@@ -90,8 +92,8 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
     Author-email: None
     License: UNKNOWN
     Location: /Users/lemon/code/typeless-dataclasses/.venv/lib/python3.9/site-packages
-    Requires: 
-    Required-by: 
+    Requires:
+    Required-by:
     $ pip uninstall typeless-dataclasses
     Found existing installation: typeless-dataclasses 0.1.dev0
     Uninstalling typeless-dataclasses-0.1.dev0:
@@ -101,5 +103,16 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
       Successfully uninstalled typeless-dataclasses-0.1.dev0
     ```
 
-15:32/15:59
+15:32/16:00
 
+
+### pre-commit
+
+* https://pre-commit.com/
+  * pip install pre-commit
+  * .pre-commit-config.yaml
+    * mostly what's in the example, plus black (with pyproject.toml settings), flake8 and bugbear, and reorder imports
+  * pre-commit autoupdate
+  * pre-commit install
+
+16:29/16:47
