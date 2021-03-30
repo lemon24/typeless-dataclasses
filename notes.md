@@ -15,6 +15,8 @@
 * [x] pre-commit: black etc.
 * [x] code
 * [x] tests
+* [x] packaging
+* [ ] coverage
 * [ ] (maybe) tox
 * [ ] CI
 * [ ] readme
@@ -140,3 +142,82 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
   * had to add ignores to setup.cfg
 
 17:31/17:49
+
+
+
+## 2021-03-30
+
+
+### packaging
+
+* (started with tox, but realized this would be needed first)
+
+* things we want
+  * version from file
+  * tests etc in tarball
+
+* let's go through all the options from https://packaging.python.org/guides/distributing-packages-using-setuptools/ (linked from https://packaging.python.org/tutorials/packaging-projects/)
+  * version (nice guidelines on versionning, btw)
+  * project_urls
+    * the list in distributing-packages-using-setuptools differs from the one in packaging-projects; it does say it can be arbitrary, but...
+    * look at reader (inspired from flask a long time ago)
+    * look at flask
+    * go with flask (they must know something)
+      * kept documentation, source code, and issue tracker
+      * for docs we use the same link, readme will be docs enough
+  * for license we'll use classifiers,
+  * classifiers
+    * from https://pypi.org/classifiers/
+    * if we add mypy support, add Typing :: Typed
+  * keywords
+  * what goes where? options vs metadata
+    * the distributing-packages-using-setuptools example stup.cfg is almost empty
+    * better https://setuptools.readthedocs.io/en/latest/userguide/declarative_config.html
+  * no dependencies; 3.6 users should install datacalsses themselves
+    * we'd put them in setup.py like flask does: https://github.com/pallets/flask/blob/ecb3450f19d3d817b4b857bb5831b309131b37e1/setup.py (presumably github will eventually know to use setup.cfg)
+  * extras_require
+    * don't appear in github, so we'll use setup.cfg
+    * tests, dev; still want dataclasses for test
+    * https://setuptools.readthedocs.io/en/latest/userguide/dependency_management.html#declaring-dependencies is nice, has both setup.cfg and setup.py versions
+
+    * pip install -e '.[tests,dev]'; python -m build
+  * ended at 16:09
+
+* files
+
+  ```console
+  $ unzip -l dist/typeless_dataclasses-0.1.dev1-py3-none-any.whl
+  Archive:  dist/typeless_dataclasses-0.1.dev1-py3-none-any.whl
+    Length      Date    Time    Name
+  ---------  ---------- -----   ----
+      1211  03-30-2021 13:09   typeless_dataclasses-0.1.dev1.dist-info/LICENSE
+      1591  03-30-2021 13:09   typeless_dataclasses-0.1.dev1.dist-info/METADATA
+        92  03-30-2021 13:09   typeless_dataclasses-0.1.dev1.dist-info/WHEEL
+          1  03-30-2021 13:09   typeless_dataclasses-0.1.dev1.dist-info/top_level.txt
+        465  03-30-2021 13:09   typeless_dataclasses-0.1.dev1.dist-info/RECORD
+  ---------                     -------
+      3360                     5 files
+  $ tar -tvf dist/typeless-dataclasses-0.1.dev1.tar.gz
+  drwxr-xr-x  0 lemon  staff       0 Mar 30 16:14 typeless-dataclasses-0.1.dev1/
+  -rw-r--r--  0 lemon  staff    1334 Mar 30 16:14 typeless-dataclasses-0.1.dev1/PKG-INFO
+  -rw-r--r--  0 lemon  staff      69 Mar 29 14:29 typeless-dataclasses-0.1.dev1/README.md
+  -rw-r--r--  0 lemon  staff     193 Mar 29 17:34 typeless-dataclasses-0.1.dev1/pyproject.toml
+  -rw-r--r--  0 lemon  staff    1390 Mar 30 16:14 typeless-dataclasses-0.1.dev1/setup.cfg
+  -rw-r--r--  0 lemon  staff      38 Mar 29 17:01 typeless-dataclasses-0.1.dev1/setup.py
+  drwxr-xr-x  0 lemon  staff       0 Mar 30 16:14 typeless-dataclasses-0.1.dev1/src/
+  drwxr-xr-x  0 lemon  staff       0 Mar 30 16:14 typeless-dataclasses-0.1.dev1/src/typeless_dataclasses.egg-info/
+  -rw-r--r--  0 lemon  staff    1334 Mar 30 16:14 typeless-dataclasses-0.1.dev1/src/typeless_dataclasses.egg-info/PKG-INFO
+  -rw-r--r--  0 lemon  staff     282 Mar 30 16:14 typeless-dataclasses-0.1.dev1/src/typeless_dataclasses.egg-info/SOURCES.txt
+  -rw-r--r--  0 lemon  staff       1 Mar 30 16:14 typeless-dataclasses-0.1.dev1/src/typeless_dataclasses.egg-info/dependency_links.txt
+  -rw-r--r--  0 lemon  staff      70 Mar 30 16:14 typeless-dataclasses-0.1.dev1/src/typeless_dataclasses.egg-info/requires.txt
+  -rw-r--r--  0 lemon  staff       1 Mar 30 16:14 typeless-dataclasses-0.1.dev1/src/typeless_dataclasses.egg-info/top_level.txt
+  ```
+
+  * file is missing from wheel and tar; tar should also have tests and license
+  * py_modules for modules fixes the module, but we need to spell it out (according to distributing-packages-using-setuptools, there's no find:)
+  * MANIFEST.in for the rest
+    * using LICENSE, recursive-include tests (pyproject, setup, readme seem to be already included)
+    * uh oh, we're also including tests/__pycache__/
+      * global-exclude to the rescue
+
+15:15/16:36

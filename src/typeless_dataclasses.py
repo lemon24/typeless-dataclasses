@@ -3,6 +3,9 @@ import inspect
 import typing
 
 
+__version__ = '0.1.dev1'
+
+
 def typeless(cls):
     if not hasattr(cls, '__annotations__'):
         cls.__annotations__ = {}
