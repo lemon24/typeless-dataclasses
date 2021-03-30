@@ -16,7 +16,7 @@
 * [x] code
 * [x] tests
 * [x] packaging
-* [ ] coverage
+* [x] coverage
 * [ ] (maybe) tox
 * [ ] CI
 * [ ] readme
@@ -221,3 +221,28 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
       * global-exclude to the rescue
 
 15:15/16:36
+
+
+### coverage
+
+* need pytest-cov (and coverage)
+* pytest --cov && coverage html
+  * 100% coverage, but... .venv/* included
+  * https://coverage.readthedocs.io
+  * where to add options? "configuration reference" -> also reads from setup.cfg
+  * "specifying source files" source
+    * both src and tests
+  * without branch, 100%, with branch, 97%
+
+* would be nice to know what code runs what
+  * "measurement context"
+  * https://pytest-cov.readthedocs.io/en/latest/contexts.html
+  * pytest --cov --cov-context=test && coverage html --show-contexts
+    * hmm, says (empty)
+    * [paths] didn't fix it
+    * ok, seems to be because our code does not run in a test function; rather, it runs at the module level
+      * fixed
+
+16:54/17:16
+
+19:29/20:00

@@ -8,55 +8,62 @@ import pytest
 from typeless_dataclasses import typeless
 
 
-@dataclass
-class Typed:
-    one: Any
-    two: Any = 2
-    three: ClassVar[Any] = 3
-    four = 4
+def make_typed():
+    @dataclass
+    class Data:
+        one: Any
+        two: Any = 2
+        three: ClassVar[Any] = 3
+        four = 4
 
-    @property
-    def property(self):
-        return self.one * self.two
+        @property
+        def property(self):
+            return self.one * self.two
 
-    def method(self):
-        return self.one / self.two
+        def method(self):
+            return self.one / self.two
 
-    @classmethod
-    def class_method(cls):
-        return cls.three + cls.four
+        @classmethod
+        def class_method(cls):
+            return cls.three + cls.four
 
-    @staticmethod
-    def static_method():
-        return 0
+        @staticmethod
+        def static_method():
+            return 0
 
-
-@dataclass
-@typeless
-class Typeless:
-    one = field()
-    two = field(default=2)
-    three = 3
-    four = 4
-
-    @property
-    def property(self):
-        return self.one * self.two
-
-    def method(self):
-        return self.one / self.two
-
-    @classmethod
-    def class_method(cls):
-        return cls.three + cls.four
-
-    @staticmethod
-    def static_method():
-        return 0
+    return Data
 
 
-@pytest.mark.parametrize('cls', [Typed, Typeless])
-def test_class_behaves_normally(cls):
+def make_typeless():
+    @dataclass
+    @typeless
+    class Data:
+        one = field()
+        two = field(default=2)
+        three = 3
+        four = 4
+
+        @property
+        def property(self):
+            return self.one * self.two
+
+        def method(self):
+            return self.one / self.two
+
+        @classmethod
+        def class_method(cls):
+            return cls.three + cls.four
+
+        @staticmethod
+        def static_method():
+            return 0
+
+    return Data
+
+
+@pytest.mark.parametrize('cls_factory', [make_typed, make_typeless])
+def test_class_behaves_normally(cls_factory):
+    cls = cls_factory()
     data = cls(1)
 
     assert vars(data) == {'one': 1, 'two': 2}
@@ -85,5 +92,7 @@ def field_data(cls):
 
 
 def test_fields():
+    Typed = make_typed()
+    Typeless = make_typeless()
     assert field_data(Typed) == field_data(Typeless)
     assert field_data(Typed(1)) == field_data(Typeless(1))
