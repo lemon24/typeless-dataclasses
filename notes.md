@@ -17,7 +17,9 @@
 * [x] tests
 * [x] packaging
 * [x] coverage
-* [ ] (maybe) tox
+* [x] (maybe) tox
+* [ ] makefile
+* [ ] (maybe) check coverage 100%
 * [ ] CI
 * [ ] readme
   * [ ] badges
@@ -245,4 +247,19 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
 
 16:54/17:16
 
-19:29/20:00
+19:29/20:01
+
+
+### tox
+
+* https://tox.readthedocs.io/en/latest/example/basic.html#a-simple-tox-ini-default-environments
+* src/typeless_dataclasses.py showing up with 0 coverage
+  * https://pytest-cov.readthedocs.io/en/latest/tox.html this didn't help 100%, but its useful
+  * https://stackoverflow.com/questions/58696476/tox-0-coverage kinda didnt help (tests missing)
+  * also need to set coverage:paths in setup.cfg
+  * https://github.com/pytest-dev/pytest-cov/blob/master/examples/src-layout/ helped everything in result
+    * except "No data to combine"
+  * https://gist.github.com/dnozay/5b9b818ff0dc857d1358 did help, also no need to add --parallel
+
+
+20:01/...
