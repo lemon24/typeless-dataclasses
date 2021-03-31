@@ -19,12 +19,12 @@
 * [x] coverage
 * [x] (maybe) tox
 * [ ] makefile
-* [ ] (maybe) check coverage 100%
+* [x] (maybe) check coverage 100%
 * [ ] CI
 * [ ] readme
   * [ ] badges
   * [ ] docs
-* [ ] docstrings
+* [x] docstrings
 * [ ] (maybe) set up type checking
 * [ ] release
   * [ ] bump version
@@ -276,3 +276,14 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
     * https://docs.pytest.org/en/stable/reference.html#ini-options-ref
 
 10:02/10:34
+
+
+
+### check coverage 100%
+
+* "if not hasattr(cls, '__annotations__'):" is missing branch coverage
+  * need empty class
+* while we're here, let's also test the __annotations__ for the main ones are the same
+* pytest --cov --cov-context=test --cov-fail-under=100
+
+10:34/10:58

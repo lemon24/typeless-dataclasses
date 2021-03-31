@@ -96,3 +96,31 @@ def test_fields():
     Typeless = make_typeless()
     assert field_data(Typed) == field_data(Typeless)
     assert field_data(Typed(1)) == field_data(Typeless(1))
+
+
+def test_annotations_are_the_same():
+    Typed = make_typed()
+    Typeless = make_typeless()
+
+    common = Typed.__annotations__.keys() & Typeless.__annotations__.keys()
+    assert len(common) >= 3
+
+    typed_annotations = {k: Typed.__annotations__[k] for k in common}
+    typeless_annotations = {k: Typeless.__annotations__[k] for k in common}
+    assert typed_annotations == typeless_annotations
+
+
+def test_existing_annotations_are_preserved():
+    @dataclass
+    @typeless
+    class Typeless:
+        one: int = field()
+        two = field(default=2)
+
+    @dataclass
+    @typeless
+    class Typed:
+        one: int
+        two: Any = 2
+
+    assert Typed.__annotations__ == Typeless.__annotations__
