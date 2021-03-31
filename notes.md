@@ -386,3 +386,12 @@ Found 1 error in 1 file (checked 1 source file)
   * giving up
 
 15:55/16:55
+
+* trying again, found https://mypy.readthedocs.io/en/stable/extending_mypy.html#configuring-mypy-to-use-plugins
+
+16:55/17:14
+
+* still nothing; use this to run:
+  `MYPYPATH=../src mypy --strict --config-file mypyconf.ini mypyex.py --show-traceback`
+
+17:25/20:09

@@ -6,12 +6,16 @@ import dataclasses
 import inspect
 from typing import Any
 from typing import ClassVar
+from typing import TypeVar
 
 
 __version__ = '0.1.dev1'
 
 
-def typeless(cls):
+T = TypeVar('T')
+
+
+def typeless(cls: T) -> T:
     """Add default annotations to the attributes of a class,
     allowing the class to be used with dataclasses.
 
@@ -69,7 +73,7 @@ def typeless(cls):
     return cls
 
 
-def _isattribute(thing):
+def _isattribute(thing: type) -> bool:
     return not any(
         p(thing)
         for p in [
