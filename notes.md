@@ -335,3 +335,54 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
 * black: https://github.com/psf/black -> show your style
 
 15:42/15:55
+
+
+### type checking
+
+* https://mypy.readthedocs.io/en/stable/
+* from reader we know it doesn't work on pypy; it's OK
+* want this to run on CI and on tox, and badge
+
+```
+$ mypy --strict src
+src/typeless_dataclasses.py:14: error: Function is missing a return type annotation
+src/typeless_dataclasses.py:59: error: Call to untyped function "_isattribute" in typed context
+src/typeless_dataclasses.py:72: error: Function is missing a type annotation
+Found 3 errors in 1 file (checked 1 source file)
+```
+
+* making it pass is easy, just add annotations to signatures `def typeless(cls: type) -> type:
+
+```python
+from dataclasses import dataclass, field
+
+@dataclass
+@typeless
+class Data:
+    one = field()
+    two = field(default=2)
+
+d = Data(1, '')
+
+reveal_type(d)
+reveal_type(d.one)
+reveal_type(d.two)
+```
+
+```
+src/typeless_dataclasses.py:94: error: Too many arguments for "Data"
+src/typeless_dataclasses.py:96: note: Revealed type is 'typeless_dataclasses.Data'
+src/typeless_dataclasses.py:97: note: Revealed type is 'Any'
+src/typeless_dataclasses.py:98: note: Revealed type is 'builtins.int*'
+Found 1 error in 1 file (checked 1 source file)
+```
+
+* `def typeless(cls: T) -> T:` does not help either
+
+* looks like fancy dataclass stuff is not supported: https://mypy.readthedocs.io/en/stable/additional_features.html#dataclasses
+
+* tried to do some wrapping and stuff, maybe trick mypy; most likely a plugin is needed,
+  * after looking at the dataclasses mypy plugin, i'm way in over my head
+  * giving up
+
+15:55/16:55
