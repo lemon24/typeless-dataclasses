@@ -20,7 +20,7 @@
 * [x] (maybe) tox
 * [x] makefile
 * [x] (maybe) check coverage 100%
-* [ ] CI
+* [x] CI
 * [ ] codecov
 * [ ] readme
   * [ ] badges
@@ -301,5 +301,18 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
 
 * also added to manifest
 * added --fail-under to tox.ini as well
+* originally inspired from flask, now inspired from reader
 
 14:22/14:58
+
+
+
+### CI
+
+* inspired from reader
+* https://docs.github.com/en/actions/guides/building-and-testing-python
+* https://docs.github.com/en/actions/guides/building-and-testing-python#testing-your-code could have used the tox thing, like flask does; won't, because reasons
+* https://docs.github.com/en/actions/guides/building-and-testing-python#publishing-to-package-registries could upload to pypi as well, don't wanna do this for now
+
+
+15:17/...
