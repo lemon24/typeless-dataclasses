@@ -18,7 +18,7 @@
 * [x] packaging
 * [x] coverage
 * [x] (maybe) tox
-* [ ] makefile
+* [x] makefile
 * [x] (maybe) check coverage 100%
 * [ ] CI
 * [ ] codecov
@@ -223,6 +223,7 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
     * uh oh, we're also including tests/__pycache__/
       * global-exclude to the rescue
 
+
 15:15/16:36
 
 
@@ -279,7 +280,6 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
 10:02/10:34
 
 
-
 ### check coverage 100%
 
 * "if not hasattr(cls, '__annotations__'):" is missing branch coverage
@@ -290,9 +290,16 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
 10:34/10:58
 
 
-
 ### readme (docs)
 
+* also changelog
+
+13:01/14:20
 
 
-13:01/13:46
+### Makefile
+
+* also added to manifest
+* added --fail-under to tox.ini as well
+
+14:22/14:58
