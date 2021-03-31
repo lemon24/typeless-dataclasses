@@ -22,8 +22,8 @@
 * [x] (maybe) check coverage 100%
 * [x] CI
 * [x] codecov
-* [ ] readme
-  * [ ] badges
+* [x] readme
+  * [x] badges
   * [x] docs
 * [x] docstrings
 * [ ] (maybe) set up type checking
@@ -324,5 +324,14 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
 * https://docs.codecov.io/docs/supported-languages
   * https://github.com/codecov/example-python
 
+15:30/15:42
 
-15:30/...
+
+### badges
+
+* build: github -> actions -> build -> ... -> create status badge
+* codecov: settings -> badge
+* pypi: https://shields.io/ -> version -> pypi
+* black: https://github.com/psf/black -> show your style
+
+15:42/15:55

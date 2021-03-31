@@ -1,5 +1,9 @@
 **typeless-dataclasses**: use dataclasses without variable annotations
 
+
+[![build](https://github.com/lemon24/typeless-dataclasses/actions/workflows/build.yaml/badge.svg)](https://github.com/lemon24/typeless-dataclasses/actions/workflows/build.yaml) [![codecov](https://codecov.io/gh/lemon24/typeless-dataclasses/branch/master/graph/badge.svg?token=691LYGEIR4)](https://codecov.io/gh/lemon24/typeless-dataclasses) [![PyPI](https://img.shields.io/pypi/v/typeless-dataclasses)](https://pypi.org/project/typeless-dataclasses/) [![black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+
 Have you ever wanted to use dataclasses, but don't like type annotations?
 
 ```python
