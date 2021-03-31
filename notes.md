@@ -394,4 +394,8 @@ Found 1 error in 1 file (checked 1 source file)
 * still nothing; use this to run:
   `MYPYPATH=../src mypy --strict --config-file mypyconf.ini mypyex.py --show-traceback`
 
-17:25/20:09
+* tests are failing like this: * https://github.com/lemon24/typeless-dataclasses/runs/2239074261
+  * I don't understand why pytest is looking there in the first place; "works on my machine"
+  * made a new mypy branch and removing them from here
+
+17:25/20:10
