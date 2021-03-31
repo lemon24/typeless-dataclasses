@@ -21,7 +21,7 @@
 * [x] makefile
 * [x] (maybe) check coverage 100%
 * [x] CI
-* [ ] codecov
+* [x] codecov
 * [ ] readme
   * [ ] badges
   * [x] docs
@@ -315,4 +315,14 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
 * https://docs.github.com/en/actions/guides/building-and-testing-python#publishing-to-package-registries could upload to pypi as well, don't wanna do this for now
 
 
-15:17/...
+15:17/15:30
+
+
+### codecov
+
+* can't use reader, since we're only using codecov with travis
+* https://docs.codecov.io/docs/supported-languages
+  * https://github.com/codecov/example-python
+
+
+15:30/...
