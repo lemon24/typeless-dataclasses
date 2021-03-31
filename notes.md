@@ -262,4 +262,17 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
   * https://gist.github.com/dnozay/5b9b818ff0dc857d1358 did help, also no need to add --parallel
 
 
-20:01/...
+20:01/21:01
+
+
+
+## 2021-03-31
+
+### docstrings
+
+* must look nice with help()
+* to test docstring examples: pytest --doctest-modules
+  * "addopts = --doctest-modules" in setup.cfg to always have them
+    * https://docs.pytest.org/en/stable/reference.html#ini-options-ref
+
+10:02/10:34
