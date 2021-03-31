@@ -21,9 +21,10 @@
 * [ ] makefile
 * [x] (maybe) check coverage 100%
 * [ ] CI
+* [ ] codecov
 * [ ] readme
   * [ ] badges
-  * [ ] docs
+  * [x] docs
 * [x] docstrings
 * [ ] (maybe) set up type checking
 * [ ] release
@@ -287,3 +288,11 @@ direnv: export +PYTEST_ADDOPTS +VIRTUAL_ENV ~PATH
 * pytest --cov --cov-context=test --cov-fail-under=100
 
 10:34/10:58
+
+
+
+### readme (docs)
+
+
+
+13:01/13:46

@@ -1,8 +1,6 @@
 """
 Use dataclasses without variable annotations.
 
-See the typeless() docstring for details.
-
 """
 import dataclasses
 import inspect
@@ -26,6 +24,7 @@ def typeless(cls):
     This:
 
     >>> from dataclasses import dataclass, field
+    >>> from typeless_dataclasses import typeless
     >>>
     >>> @dataclass
     ... @typeless
