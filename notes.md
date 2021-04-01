@@ -27,13 +27,14 @@
   * [x] docs
 * [x] docstrings
 * [ ] (maybe) set up type checking
-* [ ] release
+* [x] release
   * [x] bump version
   * [x] update changelog
   * [x] push to github
   * [x] upload to pypi
-  * [ ] tag release
-  * [ ] delete initial empty version in pypi
+  * [x] tag release in github
+  * [x] delete initial empty version in pypi
+  * [x] bump version to dev
 
 14:30/14:45
 
@@ -408,6 +409,13 @@ Found 1 error in 1 file (checked 1 source file)
 ### release
 
 
-* Bump version: 1.0rc1 (no test upload)
-* python -m build
-* python -m twine upload dist/*
+* bump version: 1.0rc1 (no test upload)
+* pypi
+  * rm -r build/ dist
+  * python -m build
+  * python -m twine upload dist/*
+* repeat for 1.0
+* deleted test pypi stuff, cut github release/tag
+* bump version to 1.1.dev0
+
+07:07/07:29

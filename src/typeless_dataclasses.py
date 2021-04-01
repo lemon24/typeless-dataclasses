@@ -9,7 +9,7 @@ from typing import ClassVar
 from typing import TypeVar
 
 
-__version__ = '1.0'
+__version__ = '1.1.dev0'
 
 
 T = TypeVar('T')
