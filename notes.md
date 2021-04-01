@@ -28,10 +28,10 @@
 * [x] docstrings
 * [ ] (maybe) set up type checking
 * [ ] release
-  * [ ] bump version
+  * [x] bump version
   * [x] update changelog
-  * [ ] push to github
-  * [ ] upload to pypi
+  * [x] push to github
+  * [x] upload to pypi
   * [ ] tag release
   * [ ] delete initial empty version in pypi
 
@@ -408,4 +408,6 @@ Found 1 error in 1 file (checked 1 source file)
 ### release
 
 
-* Bump version
+* Bump version: 1.0rc1 (no test upload)
+* python -m build
+* python -m twine upload dist/*
