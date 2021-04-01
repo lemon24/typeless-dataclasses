@@ -29,10 +29,11 @@
 * [ ] (maybe) set up type checking
 * [ ] release
   * [ ] bump version
-  * [ ] update changelog
+  * [x] update changelog
   * [ ] push to github
   * [ ] upload to pypi
   * [ ] tag release
+  * [ ] delete initial empty version in pypi
 
 14:30/14:45
 
@@ -399,3 +400,12 @@ Found 1 error in 1 file (checked 1 source file)
   * made a new mypy branch and removing them from here
 
 17:25/20:15
+
+
+
+## 2021-04-01
+
+### release
+
+
+* Bump version
