@@ -3,7 +3,7 @@
 
 ### github repo
 
-* readme: yes, .gitignore: python: license: unlicense, default branch: master, no wiki, no projects
+* readme: yes, .gitignore: python: license: unlicense, no wiki, no projects
 
 14:20/14:30
 
@@ -398,4 +398,4 @@ Found 1 error in 1 file (checked 1 source file)
   * I don't understand why pytest is looking there in the first place; "works on my machine"
   * made a new mypy branch and removing them from here
 
-17:25/20:10
+17:25/20:15
